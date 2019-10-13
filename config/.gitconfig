@@ -1,0 +1,15 @@
+[user]
+	email = guilherme.ramos@freiheit.com
+	name = Guilherme Ramos
+[core]
+	editor = nano
+	fileMode = false
+[alias]
+  review = push origin HEAD:refs/for/master
+  pr = "!f() { $DOTFILES/scripts/git/gitpr.sh \"${@}\";}; f"
+  next = "!f() { $DOTFILES/scripts//git/gitnext.sh \"${@}\";}; f"
+  bclean = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+[pull]
+	rebase = false
+[push]
+	default = current

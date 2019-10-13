@@ -1,0 +1,10 @@
+- link:
+  ~/.zshrc:
+    path: config/.zshrc
+    relink: true
+  ~/.nanorc:
+    path: config/.nanorc
+    relink: true
+  ~/.gitconfig:
+    path: config/.gitconfig
+    relink: true
