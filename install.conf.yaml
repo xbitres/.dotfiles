@@ -8,3 +8,5 @@
   ~/.gitconfig:
     path: config/.gitconfig
     relink: true
+- shell:
+  - [./brew/install.sh]
