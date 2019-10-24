@@ -23,6 +23,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# Fuzzy finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Environment varibles
 export GOROOT=/usr/local/opt/go/libexec
 
