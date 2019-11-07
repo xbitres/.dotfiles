@@ -18,7 +18,6 @@ plugins=(
     zsh-autosuggestions
     colorize
     history-substring-search
-    kubectl
 )
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -65,3 +64,6 @@ alias dltviewer='open -a $DLT_VIEWER_SRC/build/bin/DLT\ Viewer.app'
 
 # Kubernetes config
 export KUBECONFIG="$(exa $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
+
+# NIX
+source /Users/guilhermeramos/.nix-profile/etc/profile.d/nix.sh

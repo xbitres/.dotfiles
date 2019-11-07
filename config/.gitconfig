@@ -8,7 +8,7 @@
   review = push origin HEAD:refs/for/master
   pr = "!f() { $WORKSPACE/4-scripts/tooling/git/gitpr.sh \"${@}\";}; f"
   next = "!f() { $DOTFILES/scripts/git/gitnext.sh \"${@}\";}; f"
-  bclean = "!git co master && git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  bclean = "!f() { $DOTFILES/scripts/git/bclean.sh \"${@}\";}; f"
 [pull]
 	rebase = false
 [push]
