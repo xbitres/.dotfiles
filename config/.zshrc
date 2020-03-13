@@ -21,6 +21,7 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(kubectl completion zsh)
 
 # Fuzzy finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -67,3 +68,8 @@ export KUBECONFIG="$(exa $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
 
 # NIX
 source /Users/guilhermeramos/.nix-profile/etc/profile.d/nix.sh
+
+# Swagger
+viewSwagger() {
+    docker run -p 80:8080 -e SWAGGER_JSON=/tmp/{file} -v $(pwd):/tmp swaggerapi/swagger-ui
+}

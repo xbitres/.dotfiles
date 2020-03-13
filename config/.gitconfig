@@ -5,7 +5,6 @@
 	editor = nano
 	fileMode = false
 [alias]
-  review = push origin HEAD:refs/for/master
   pr = "!f() { $WORKSPACE/4-scripts/tooling/git/gitpr.sh \"${@}\";}; f"
   next = "!f() { $DOTFILES/scripts/git/gitnext.sh \"${@}\";}; f"
   bclean = "!f() { $DOTFILES/scripts/git/bclean.sh \"${@}\";}; f"
