@@ -18,13 +18,13 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="avit"
 plugins=(
     git
-    zsh-syntax-highlighting
     zsh-autosuggestions
     colorize
     history-substring-search
+    zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 source <(kubectl completion zsh)
 
 # Fuzzy finder
@@ -74,10 +74,12 @@ viewSwagger() {
     docker run -p 80:8080 -e SWAGGER_JSON=/tmp/{file} -v $(pwd):/tmp swaggerapi/swagger-ui
 }
 
+# Load zsh plugin last
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 # Deprecated
 # This is the deprecated zone of programs that are no longer used
 
 # DLT Viewer
-# TODO: Automatize the install of the dlt_viewer
 export DLT_VIEWER_SRC=/usr/local/dlt-viewer
 alias dltviewer='open -a $DLT_VIEWER_SRC/build/bin/DLT\ Viewer.app'
