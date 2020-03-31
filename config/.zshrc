@@ -47,7 +47,12 @@ alias lt='exa -l --tree -L 2'
 
 # FASD config
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-eval "$(fasd --init posix-alias zsh-hook)"
+fasd_cache="$HOME/.fasd-init-bash"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+  fasd --init posix-alias zsh-hook >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache
 
 # Git alias
 alias gpr='git pull --rebase'
@@ -55,10 +60,6 @@ alias gpr='git pull --rebase'
 # Kubernetes alias
 alias k='kubectl'
 alias ks='kubectl config get-contexts'
-
-# Go alias
-alias gogen='cd service && go generate main.go && cd ..'
-alias gob='cd service && go generate main.go && cd ..'
 
 # Kubernetes config
 export KUBECONFIG="$(exa $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
