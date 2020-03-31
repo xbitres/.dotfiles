@@ -10,3 +10,4 @@
     relink: true
 - shell:
   - [./brew/install.sh]
+  - [./zsh/install.sh]
