@@ -24,11 +24,8 @@ plugins=(
     zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
-
+source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source <(kubectl completion zsh)
-
-# Fuzzy finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Environment varibles
 export GOROOT=/usr/local/opt/go/libexec
@@ -75,7 +72,7 @@ viewSwagger() {
 }
 
 # Load zsh plugin last
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Deprecated
 # This is the deprecated zone of programs that are no longer used
