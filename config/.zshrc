@@ -9,6 +9,10 @@ export EDITOR=nano
 export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
 
+# Java Config
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.jdk/Contents/Home/
+export JDK_HOME=JAVA_HOME
+
 # ZSH Config
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="avit"
@@ -34,9 +38,10 @@ export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/.local/bin
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH" # brew install gnu-getopt
 export PATH="/usr/local/opt/qt/bin:$PATH" # brew install qt
+export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
 
 # Unix translation
-export FLAGS_GETOPT_CMD="$(brew --prefix gnu-getopt)/bin/getopt"
+export FLAGS_GETOPT_CMD="/usr/local/opt/gnu-getopt/bin/getopt"
 
 # Exa config
 alias l='exa -l'
@@ -58,11 +63,6 @@ alias ks='kubectl config get-contexts'
 alias gogen='cd service && go generate main.go && cd ..'
 alias gob='cd service && go generate main.go && cd ..'
 
-# DLT Viewer
-# TODO: Automatize the install of the dlt_viewer
-export DLT_VIEWER_SRC=~/DLTViewer/dlt-viewer
-alias dltviewer='open -a $DLT_VIEWER_SRC/build/bin/DLT\ Viewer.app'
-
 # Kubernetes config
 export KUBECONFIG="$(exa $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
 
@@ -73,3 +73,11 @@ source /Users/guilhermeramos/.nix-profile/etc/profile.d/nix.sh
 viewSwagger() {
     docker run -p 80:8080 -e SWAGGER_JSON=/tmp/{file} -v $(pwd):/tmp swaggerapi/swagger-ui
 }
+
+# Deprecated
+# This is the deprecated zone of programs that are no longer used
+
+# DLT Viewer
+# TODO: Automatize the install of the dlt_viewer
+export DLT_VIEWER_SRC=/usr/local/dlt-viewer
+alias dltviewer='open -a $DLT_VIEWER_SRC/build/bin/DLT\ Viewer.app'
