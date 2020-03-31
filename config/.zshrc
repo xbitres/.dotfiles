@@ -15,7 +15,7 @@ export JDK_HOME=JAVA_HOME
 
 # ZSH Config
 export ZSH=~/.oh-my-zsh
-ZSH_THEME="avit"
+ZSH_THEME="wezm"
 plugins=(
     git
     zsh-autosuggestions
