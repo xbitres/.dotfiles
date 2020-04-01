@@ -29,6 +29,7 @@ source <(kubectl completion zsh)
 
 # Environment varibles
 export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/golang
 
 # Path construction
 export PATH=$PATH:/usr/local/bin
@@ -36,6 +37,7 @@ export PATH=$PATH:~/.local/bin
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH" # brew install gnu-getopt
 export PATH="/usr/local/opt/qt/bin:$PATH" # brew install qt
 export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
+export PATH=$PATH:$GOPATH/bin
 
 # Unix translation
 export FLAGS_GETOPT_CMD="/usr/local/opt/gnu-getopt/bin/getopt"
