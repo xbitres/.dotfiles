@@ -20,14 +20,13 @@ plugins=(
     git
     zsh-autosuggestions
     colorize
-    history-substring-search
     zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source <(kubectl completion zsh)
 
-# Environment varibles
+# Go Setup
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/golang
 
@@ -47,7 +46,7 @@ alias l='exa -l'
 alias ls='exa -la'
 alias lt='exa -l --tree -L 2'
 
-# FASD config
+# FASD config (Z like commands)
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
@@ -55,6 +54,9 @@ if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
 fi
 source "$fasd_cache"
 unset fasd_cache
+
+# Fuzzy Search setup
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Git alias
 alias gpr='git pull --rebase'
