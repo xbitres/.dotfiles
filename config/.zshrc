@@ -48,6 +48,7 @@ alias lt='exa -l --tree -L 2'
 
 # FASD config (Z like commands)
 alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias zz='fasd_cd -d -i'
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
   fasd --init posix-alias zsh-hook >| "$fasd_cache"
