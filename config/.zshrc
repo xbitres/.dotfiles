@@ -42,6 +42,7 @@ export PATH="/usr/local/opt/qt/bin:$PATH" # brew install qt
 export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
 export PATH="$PATH":"$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$HOME/.cargo/env
 
 # Unix translation
 export FLAGS_GETOPT_CMD="/usr/local/opt/gnu-getopt/bin/getopt"
