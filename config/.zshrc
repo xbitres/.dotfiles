@@ -24,7 +24,11 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(kubectl completion zsh)
+
+autoload -Uz compinit
+compinit
 
 # Go Setup
 export GOROOT=/usr/local/opt/go/libexec
