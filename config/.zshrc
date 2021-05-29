@@ -90,3 +90,5 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # DLT Viewer
 export DLT_VIEWER_SRC=/usr/local/dlt-viewer
 alias dltviewer='open -a $DLT_VIEWER_SRC/build/bin/DLT\ Viewer.app'
+
+alias excalidraw='cd ~/excalidraw && yarn && yarn start'
