@@ -8,6 +8,7 @@ export SAVEHIST=1000000
 export EDITOR=nano
 export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
+export WORK=~/Work
 
 # Java Config
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.jdk/Contents/Home/
@@ -32,7 +33,7 @@ compinit
 
 # Go Setup
 export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/golang
+export GOPATH=$WORK/golang
 export GOBIN=$GOPATH/bin
 export GO111MODULE=on
 
