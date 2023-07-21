@@ -19,25 +19,26 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="wezm"
 plugins=(
     git
-    zsh-autosuggestions
-    colorize
-    zsh-syntax-highlighting
 )
 source $ZSH/oh-my-zsh.sh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source <(kubectl completion zsh)
 
 autoload -Uz compinit
 compinit
 
 # Go Setup
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT="$(brew --prefix golang)/libexec"
 export GOPATH=$WORK/golang
 export GOBIN=$GOPATH/bin
 export GO111MODULE=on
 
+# NVM Config
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Path construction
+export PATH=$PATH:$DOTFILES/.installs/bin
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:~/.local/bin
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH" # brew install gnu-getopt
@@ -68,9 +69,6 @@ fi
 source "$fasd_cache"
 unset fasd_cache
 
-# Fuzzy Search setup
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # Git alias
 alias gpr='git pull --rebase'
 
@@ -85,8 +83,5 @@ export KUBECONFIG="$(exa $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
 viewSwagger() {
     docker run -p 80:8080 -e SWAGGER_JSON=/tmp/{file} -v $(pwd):/tmp swaggerapi/swagger-ui
 }
-
-# Load zsh plugin last
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias excalidraw='cd ~/.dotfiles/excalidraw && yarn && yarn start'
