@@ -1,1 +1,3 @@
 .installs/**
+!.installs/bin/.gitkeep
+.download/**
