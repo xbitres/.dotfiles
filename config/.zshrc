@@ -2,9 +2,9 @@ export DOTFILES=~/.dotfiles
 
 # Bash config
 export LC_ALL=en_US.UTF-8
-export HISTFILE=/Users/guilhermeramos/.zsh_history
-export HISTSIZE=1000000
-export SAVEHIST=1000000
+export HISTFILE=/Users/guilherme.lousada.ramos/.zsh_history
+export HISTSIZE=100000000
+export SAVEHIST=100000000
 export EDITOR=nano
 export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
@@ -16,55 +16,62 @@ export JDK_HOME=JAVA_HOME
 
 # ZSH Config
 export ZSH=~/.oh-my-zsh
-ZSH_THEME="wezm"
+ZSH_THEME="simple"
 plugins=(
-    git
+  git
+  # z
 )
+
+# export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source $ZSH/oh-my-zsh.sh
 source <(kubectl completion zsh)
+source <(fzf --zsh)
 
 autoload -Uz compinit
 compinit
 
 # Go Setup
-export GOROOT="$(brew --prefix golang)/libexec"
+export GOROOT="/usr/local/go"
 export GOPATH=$WORK/golang
 export GOBIN=$GOPATH/bin
 export GO111MODULE=on
 
 # NVM Config
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # Path construction
-export PATH=$PATH:$DOTFILES/.installs/bin
+export PATH="/opt/homebrew/opt/gnu-getopt/bin":$PATH      # brew install gnu-getopt
+export PATH="/opt/homebrew/opt/make/libexec/gnubin":$PATH # brew install make
+export PATH="/usr/local/opt/qt/bin":$PATH                 # brew install qt
+export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:/usr/local/bin
-export PATH=$PATH:~/.local/bin
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH" # brew install gnu-getopt
-export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/gettext/bin:$PATH"
-export PATH="/usr/local/opt/qt/bin:$PATH" # brew install qt
-export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
-export PATH="$PATH":"$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
+export PATH=$PATH:$DOTFILES/.installs/bin
 export PATH=$PATH:$GOPATH/bin
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
+export PATH=$PATH:"$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
+export PATH=$PATH:"/usr/local/opt/mysql-client/bin"
 export PATH=$PATH:$HOME/.cargo/env
+export PATH=/usr/local/go/bin:$PATH
 
 # Unix translation
 export FLAGS_GETOPT_CMD="/usr/local/opt/gnu-getopt/bin/getopt"
 
-# Exa config
-alias l='exa -l'
-alias ls='exa -la'
-alias lt='exa -l --tree -L 2'
+# eza config
+alias l='eza -l'
+alias ls='eza -la'
+alias lt='eza -l --tree -L 2'
 
 # FASD config (Z like commands)
-alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+alias z='fasd_cd -d' # cd, same functionality as j in autojump
 alias zz='fasd_cd -d -i'
 fasd_cache="$HOME/.fasd-init-bash"
 if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-  fasd --init posix-alias zsh-hook >| "$fasd_cache"
+  fasd --init posix-alias zsh-hook >|"$fasd_cache"
 fi
 source "$fasd_cache"
 unset fasd_cache
@@ -77,11 +84,48 @@ alias k='kubectl'
 alias ks='kubectl config get-contexts'
 
 # Kubernetes config
-export KUBECONFIG="$(exa $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
+export KUBECONFIG="$(eza $HOME/.kube/config* | tr '\n' ':' | sed -e 's/:$//g')"
 
 # Swagger
 viewSwagger() {
-    docker run -p 80:8080 -e SWAGGER_JSON=/tmp/{file} -v $(pwd):/tmp swaggerapi/swagger-ui
+  docker run -p 80:8080 -e SWAGGER_JSON=/tmp/{file} -v $(pwd):/tmp swaggerapi/swagger-ui
 }
 
 alias excalidraw='cd ~/.dotfiles/excalidraw && yarn && yarn start'
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/guilherme.lousada.ramos/.dart-cli-completion/zsh-config.zsh ]] && . /Users/guilherme.lousada.ramos/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Added by Antigravity
+export PATH="/Users/guilherme.lousada.ramos/.antigravity/antigravity/bin:$PATH"
+
+# >>> dscore-cli section >>>
+# Here we include the environment changes made by the dscore-cli tool.
+#
+# To disable (almost) all changes made by dscore-cli tool, comment out or
+# remove the line below.
+#
+# Note: The changes made using package managers that existed in the system
+#       before `dscore init` was run cannot be disabled.
+
+source "/Users/guilherme.lousada.ramos/.dscore/.profile"
+
+# <<< End of dscore-cli section >>>
+export PATH="$HOME/.local/bin:$PATH"
+
+eval "$(ssh-agent -s)"
+eval "$(direnv hook zsh)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/guilherme.lousada.ramos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/guilherme.lousada.ramos/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/guilherme.lousada.ramos/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/guilherme.lousada.ramos/google-cloud-sdk/completion.zsh.inc'; fi
