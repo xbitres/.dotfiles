@@ -64,7 +64,6 @@ brew "protoc-gen-go-grpc"                                               # Protoc
 brew "uv"                                                               # Extremely fast Python package installer and resolver, written in Rust
 brew "yt-dlp"                                                           # Feature-rich command-line audio/video downloader
 brew "zsh-autocomplete"                                                 # Real-time type-ahead completion for Zsh
-brew "dart-sdk"                                                         # Dart Language SDK, including the VM, dart2js, core libraries, and more
 
 cask "1password"                                                        # Password manager that keeps all passwords secure behind one password
 cask "amethyst"                                                         # Automatic tiling window manager similar to xmonad
@@ -77,7 +76,7 @@ cask "meld"                                                             # Visual
 cask "slack"                                                            # Team communication and collaboration software
 cask "spotify"                                                          # Music streaming service
 cask "thunderbird"                                                      # Customizable email client
-cask "visual-studio-code"                                               # Open-source code editor
+cask "visual-studio-code@insiders"                                      # Open-source code editor (Insiders build)
 
 vscode "andrei-ignatev.codeowners-tree"                                 # Generate an interactive tree-like graph of code ownership for folders and files in your project
 vscode "avetis.nord-palette"                                            # Dark themes based on Nord palette
