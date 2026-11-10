@@ -30,7 +30,6 @@ autoload -Uz compinit
 compinit
 
 # Go Setup
-export GOROOT="/usr/local/go"
 export GOPATH=$WORK/golang
 export GOBIN=$GOPATH/bin
 export GO111MODULE=on
@@ -48,10 +47,8 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=$PATH:/usr/local/bin
 export PATH=$PATH:$DOTFILES/.installs/bin
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
 export PATH=$PATH:"$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
 export PATH=$PATH:"/usr/local/opt/mysql-client/bin"
-export PATH=/usr/local/go/bin:$PATH
 
 # Unix translation
 export FLAGS_GETOPT_CMD="/usr/local/opt/gnu-getopt/bin/getopt"
@@ -116,8 +113,8 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(ssh-agent -s)"
 eval "$(direnv hook zsh)"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/guilherme.lousada.ramos/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/guilherme.lousada.ramos/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/guilherme.lousada.ramos/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/guilherme.lousada.ramos/google-cloud-sdk/completion.zsh.inc'; fi
+# Google Cloud SDK (gcloud-cli cask): PATH and shell completion
+GCLOUD_SDK="${HOMEBREW_PREFIX:-/opt/homebrew}/share/google-cloud-sdk"
+[ -f "$GCLOUD_SDK/path.zsh.inc" ] && . "$GCLOUD_SDK/path.zsh.inc"
+[ -f "$GCLOUD_SDK/completion.zsh.inc" ] && . "$GCLOUD_SDK/completion.zsh.inc"
+unset GCLOUD_SDK
