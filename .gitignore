@@ -1,5 +1,9 @@
 .installs/*
 !.installs/bin/
 .installs/bin/*
+.artisan.yaml
+.devcontainer/
+.envrc
+.installs/**
 !.installs/bin/.gitkeep
 .download/
