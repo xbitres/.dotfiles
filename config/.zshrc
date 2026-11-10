@@ -10,10 +10,6 @@ export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
 export WORK=~/Work
 
-# Java Config
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-14.jdk/Contents/Home/
-export JDK_HOME=JAVA_HOME
-
 # ZSH Config
 export ZSH=~/.oh-my-zsh
 ZSH_THEME="simple"
@@ -55,7 +51,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/flutter/bin # FIXME(GR): Automate flutter install
 export PATH=$PATH:"$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
 export PATH=$PATH:"/usr/local/opt/mysql-client/bin"
-export PATH=$PATH:$HOME/.cargo/env
 export PATH=/usr/local/go/bin:$PATH
 
 # Unix translation
@@ -103,9 +98,6 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# Added by Antigravity
-export PATH="/Users/guilherme.lousada.ramos/.antigravity/antigravity/bin:$PATH"
 
 # >>> dscore-cli section >>>
 # Here we include the environment changes made by the dscore-cli tool.
