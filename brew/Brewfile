@@ -1,78 +1,160 @@
-tap "alecthomas/tap"
-tap "dart-lang/dart"
-tap "derailed/k9s"
-tap "discoteq/discoteq"
-tap "github/gh"
-tap "golangci/tap"
-tap "grpc/grpc"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "ktr0731/evans"
-tap "matsuyoshi30/gitsu"
-brew "xz"
-brew "little-cms2"
-brew "autoconf"
-brew "automake"
-brew "base64"
-brew "bash"
-brew "bash-completion"
-brew "gettext"
-brew "glib"
-brew "cmake"
-brew "curl"
-brew "libpq"
-brew "php"
-brew "composer"
-brew "coreutils"
-brew "exa"
-brew "libogg"
-brew "unbound"
-brew "libvorbis"
-brew "srt"
-brew "fzf"
-brew "gflags"
-brew "gh"
-brew "ghc"
-brew "git-crypt"
-brew "gnu-getopt"
-brew "gnu-sed"
-brew "gnu-tar"
-brew "go"
-brew "graphviz"
-brew "grep"
-brew "haskell-stack"
-brew "jq"
-brew "kind"
-brew "kubernetes-cli"
-brew "lcov"
-brew "make"
-brew "moreutils"
-brew "mysql-client"
-brew "ncurses"
-brew "nano"
-brew "node"
-brew "openal-soft"
-brew "p7zip"
-brew "python@3.8"
-brew "qt", link: false
-brew "sbt"
-brew "scrcpy"
-brew "skaffold"
-brew "terraform", link: false
-brew "tfenv"
-brew "tmux"
-brew "watch"
-brew "yq"
-brew "zsh"
-brew "alecthomas/tap/gometalinter"
-brew "dart-lang/dart/dart"
-brew "derailed/k9s/k9s"
-brew "discoteq/discoteq/flock"
-brew "golangci/tap/golangci-lint"
-brew "ktr0731/evans/evans"
-brew "matsuyoshi30/gitsu/gitsu"
-cask "amethyst"
-cask "android-platform-tools"
-cask "docker"
-cask "spotify"
+tap "dart-lang/dart"                                                    # Tap for Dart SDK
+tap "github/gh"                                                         # Tap for GitHub CLI
+tap "grpc/grpc"                                                         # Tap for gRPC
+tap "ktr0731/evans"                                                     # Tap for evans
+tap "matsuyoshi30/gitsu"                                                # Tap for gitsu
+
+brew "xz"                                                               # General-purpose data compression with high compression ratio
+brew "little-cms2"                                                      # Color management engine supporting ICC profiles
+brew "autoconf"                                                         # Automatic configure script builder
+brew "automake"                                                         # Tool for generating GNU Standards-compliant Makefiles
+brew "base64"                                                           # Encode and decode base64 files
+brew "bash"                                                             # Bourne-Again SHell, a UNIX command interpreter
+brew "bash-completion"                                                  # Programmable completion for Bash 3.2
+brew "gettext"                                                          # GNU internationalization (i18n) and localization (l10n) library
+brew "glib"                                                             # Core application library for C
+brew "cmake"                                                            # Cross-platform make
+brew "curl"                                                             # Get a file from an HTTP, HTTPS or FTP server
+brew "libpq"                                                            # Postgres C API library
+brew "php"                                                              # General-purpose scripting language
+brew "composer"                                                         # Dependency Manager for PHP
+brew "coreutils"                                                        # GNU File, Shell, and Text utilities
+brew "direnv"                                                           # Load/unload environment variables based on $PWD
+brew "eza"                                                              # Modern, maintained replacement for ls
+brew "libogg"                                                           # Ogg Bitstream Library
+brew "unbound"                                                          # Validating, recursive, caching DNS resolver
+brew "libvorbis"                                                        # Vorbis general audio compression codec
+brew "srt"                                                              # Secure Reliable Transport
+brew "fzf"                                                              # Command-line fuzzy finder written in Go
+brew "gflags"                                                           # Library for processing command-line flags
+brew "gh"                                                               # GitHub command-line tool
+brew "ghc"                                                              # Glorious Glasgow Haskell Compilation System
+brew "git-crypt"                                                        # Enable transparent encryption/decryption of files in a git repo
+brew "gnu-getopt"                                                       # Command-line option parsing utility
+brew "gnu-sed"                                                          # GNU implementation of the famous stream editor
+brew "gnu-tar"                                                          # GNU version of the tar archiving utility
+brew "go"                                                               # Open source programming language to build simple/reliable/efficient software
+brew "graphviz"                                                         # Graph visualization software from AT&T and Bell Labs
+brew "grep"                                                             # GNU grep, egrep and fgrep
+brew "haskell-stack"                                                    # Cross-platform program for developing Haskell projects
+brew "jq"                                                               # Lightweight and flexible command-line JSON processor
+brew "kind"                                                             # Run local Kubernetes cluster in Docker
+brew "kubernetes-cli"                                                   # Kubernetes command-line interface
+brew "lcov"                                                             # Graphical front-end for GCC's coverage testing tool (gcov)
+brew "make"                                                             # Utility for directing compilation
+brew "moreutils"                                                        # Collection of tools that nobody wrote when UNIX was young
+brew "mysql-client"                                                     # Open source relational database management system
+brew "ncurses"                                                          # Text-based UI library
+brew "nano"                                                             # Free (GNU) replacement for the Pico text editor
+brew "node"                                                             # Open-source, cross-platform JavaScript runtime environment
+brew "openal-soft"                                                      # Implementation of the OpenAL 3D audio API
+brew "p7zip"                                                            # 7-Zip (high compression file archiver) implementation
+brew "protobuf"                                                         # Protocol buffers (Google's data interchange format)
+brew "qt", link: false                                                  # Cross-platform application and UI framework
+brew "sbt"                                                              # Build tool for Scala projects
+brew "scrcpy"                                                           # Display and control your Android device
+brew "skaffold"                                                         # Easy and Repeatable Kubernetes Development
+brew "tfenv"                                                            # Terraform version manager inspired by rbenv
+brew "tmux"                                                             # Terminal multiplexer
+brew "watch"                                                            # Executes a program periodically, showing output fullscreen
+brew "yq"                                                               # Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "zsh"                                                              # UNIX shell (command interpreter)
+brew "zsh-autosuggestions"                                              # Fish-like fast/unobtrusive autosuggestions for zsh
+brew "zsh-syntax-highlighting"                                          # Fish shell like syntax highlighting for zsh
+brew "aliyun-cli"                                                       # Universal Command-Line Interface for Alibaba Cloud
+brew "colima"                                                           # Container runtimes on MacOS (and Linux) with minimal setup
+brew "dive"                                                             # Tool for exploring each layer in a docker image
+brew "docker"                                                           # Pack, ship and run any application as a lightweight container
+brew "docker-buildx"                                                    # Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-compose"                                                   # Isolated development environments using Docker
+brew "docker-credential-helper"                                         # Platform keystore credential helper for Docker
+brew "doctl"                                                            # Command-line tool for DigitalOcean
+brew "dust"                                                             # More intuitive version of du in rust
+brew "ffmpeg"                                                           # Play, record, convert, and stream select audio and video codecs
+brew "flock"                                                            # Lock file during command
+brew "fvm"                                                              # Manage Flutter SDK versions per project
+brew "ghostscript"                                                      # Interpreter for PostScript and PDF
+brew "git"                                                              # Distributed revision control system
+brew "gnupg"                                                            # GNU Privacy Guard (OpenPGP)
+brew "golang-migrate"                                                   # Database migrations CLI tool
+brew "golangci-lint"                                                    # Fast linters runner for Go
+brew "grype"                                                            # Vulnerability scanner for container images and filesystems
+brew "jnv"                                                              # Interactive JSON filter using jq
+brew "k9s"                                                              # Kubernetes CLI To Manage Your Clusters In Style!
+brew "kustomize"                                                        # Template-free customization of Kubernetes YAML manifests
+brew "minikube"                                                         # Run a Kubernetes cluster locally
+brew "nvm"                                                              # Manage multiple Node.js versions
+brew "protoc-gen-go"                                                    # Go support for Google's protocol buffers
+brew "protoc-gen-go-grpc"                                               # Protoc plugin that generates code for gRPC-Go clients
+brew "qrencode"                                                         # QR Code generation
+brew "rtk"                                                              # CLI proxy to minimize LLM token consumption
+brew "syft"                                                             # CLI for generating a Software Bill of Materials from container images
+brew "uv"                                                               # Extremely fast Python package installer and resolver, written in Rust
+brew "yt-dlp"                                                           # Feature-rich command-line audio/video downloader
+brew "zsh-autocomplete"                                                 # Real-time type-ahead completion for Zsh
+brew "dart-lang/dart/dart"                                              # Dart SDK
+brew "ktr0731/evans/evans"                                              # Evans: more expressive universal gRPC client
+brew "matsuyoshi30/gitsu/gitsu"                                         # Switch git user easily
+
+cask "1password"                                                        # Password manager that keeps all passwords secure behind one password
+cask "amethyst"                                                         # Automatic tiling window manager similar to xmonad
+cask "android-platform-tools"                                           # Android SDK component
+cask "azure-cli"                                                        # Microsoft Azure CLI 2.0
+cask "copilot-cli"                                                      # Brings the power of Copilot coding agent directly to your terminal
+cask "flutter"                                                          # UI toolkit for building applications for mobile, web and desktop
+cask "gcloud-cli"                                                       # Set of tools to manage resources and applications hosted on Google Cloud
+cask "ghostty"                                                          # Terminal emulator that uses platform-native UI and GPU acceleration
+cask "google-chrome"                                                    # Web browser
+cask "keka"                                                             # File archiver
+cask "meld"                                                             # Visual diff and merge tool
+cask "slack"                                                            # Team communication and collaboration software
+cask "spotify"                                                          # Music streaming service
+cask "thunderbird"                                                      # Customizable email client
+cask "visual-studio-code"                                               # Open-source code editor
+
+vscode "andrei-ignatev.codeowners-tree"                                 # Generate an interactive tree-like graph of code ownership for folders and files in your project
+vscode "avetis.nord-palette"                                            # Dark themes based on Nord palette
+vscode "bufbuild.vscode-buf"                                            # Visual Studio Code support for Buf
+vscode "dart-code.dart-code"                                            # Dart language support and debugger for Visual Studio Code
+vscode "dart-code.flutter"                                              # Flutter support and debugger for Visual Studio Code
+vscode "davidanson.vscode-markdownlint"                                 # Markdown linting and style checking for Visual Studio Code
+vscode "docker.docker"                                                  # Edit smarter, ship faster with an enhanced Docker-development experience
+vscode "doi.fileheadercomment"                                          # Insert File Header Comment such as date, time
+vscode "dotjoshjohnson.xml"                                             # XML Formatting, XQuery, and XPath Tools for Visual Studio Code
+vscode "eamodio.gitlens"                                                # Supercharge Git within VS Code — Visualize code authorship at a glance via Git blame annotations and CodeLens, seamlessly navigate and explore Git repositories, gain valuable insights via rich visualizations and powerful comparison commands, and so much more
+vscode "editorconfig.editorconfig"                                      # EditorConfig Support for Visual Studio Code
+vscode "eriklynd.json-tools"                                            # Tools for manipulating JSON
+vscode "esbenp.prettier-vscode"                                         # Code formatter using prettier
+vscode "fcrespo82.markdown-table-formatter"                             # A (not so) simple markdown plugin to format tables and other table related features
+vscode "foxundermoon.shell-format"                                      # A formatter for shell scripts, Dockerfile, gitignore, dotenv, /etc/hosts, jvmoptions, and other file types
+vscode "golang.go"                                                      # Rich Go language support for Visual Studio Code
+vscode "gruntfuggly.todo-tree"                                          # Show TODO, FIXME, etc. comment tags in a tree view
+vscode "hashicorp.terraform"                                            # Syntax highlighting and autocompletion for Terraform
+vscode "hcoban.codeowners"                                              # See Github code owner of current file
+vscode "jasonnutter.vscode-codeowners"                                  # VS Code extension for CODEOWNERS file
+vscode "miguelsolorio.fluent-icons"                                     # Fluent product icons for Visual Studio Code
+vscode "ms-azuretools.vscode-containers"                                # Makes it easy to create, manage, and debug containerized applications
+vscode "ms-azuretools.vscode-docker"                                    # Makes it easy to create, manage, and debug containerized applications
+vscode "ms-vscode.makefile-tools"                                       # Provide makefile support in VS Code: C/C++ IntelliSense, build, debug/run
+vscode "openai.chatgpt"                                                 # Codex is a coding agent that works with you everywhere you code — included in ChatGPT Plus, Pro, Business, Edu, and Enterprise plans
+vscode "redhat.vscode-yaml"                                             # YAML Language Support by Red Hat, with built-in Kubernetes syntax support
+vscode "richie5um2.vscode-sort-json"                                    # Sorts the keys within JSON objects
+vscode "rioj7.command-variable"                                         # Calculate command variables for launch.json and tasks.json
+vscode "timonwong.shellcheck"                                           # Integrates ShellCheck into VS Code, a linter for Shell scripts
+vscode "wayou.vscode-todo-highlight"                                    # highlight TODOs, FIXMEs, and any keywords, annotations
+
+# Go tools (public modules only; private/work-internal modules are not listed)
+go "golang.org/x/tools/cmd/callgraph"                                   # Display the call graph of a Go program
+go "github.com/go-delve/delve/cmd/dlv"                                  # Delve is a debugger for the Go programming language
+go "github.com/fatih/gomodifytags"                                      # Go tool to modify struct field tags
+go "github.com/haya14busa/goplay/cmd/goplay"                            # The Go Playground (https://play.golang.org/) client
+go "golang.org/x/tools/gopls"                                           # Gopls is an LSP server for Go
+go "github.com/securego/gosec/v2/cmd/gosec"                             # Go security checker
+go "github.com/cweill/gotests/gotests"                                  # Automatically generate Go test boilerplate from your source code
+go "github.com/josharian/impl"                                          # Generates method stubs for implementing an interface
+go "github.com/yannh/kubeconform/cmd/kubeconform"                       # Fast Kubernetes manifests validator, with support for Custom Resources
+go "github.com/google/osv-scanner/cmd/osv-scanner"                      # Vulnerability scanner which uses the data provided by https://osv.dev
+go "github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc"            # Documentation generator plugin for Google Protocol Buffers
+go "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway"  # protoc plugin generating a reverse-proxy that converts RESTful HTTP/1 requests to gRPC
+go "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2"     # protoc plugin generating OpenAPI v2 definitions from protos
+go "honnef.co/go/tools/cmd/staticcheck"                                 # Staticcheck analyses Go code and makes it better

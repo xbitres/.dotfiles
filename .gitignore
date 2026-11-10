@@ -1,3 +1,5 @@
-.installs/**
+.installs/*
+!.installs/bin/
+.installs/bin/*
 !.installs/bin/.gitkeep
-.download/**
+.download/
