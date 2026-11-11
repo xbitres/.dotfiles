@@ -1,5 +1,4 @@
 .artisan.yaml
 .devcontainer/
 .envrc
-.installs/
 brew/Brewfile.lock.json

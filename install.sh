@@ -5,11 +5,8 @@ set -e
 export DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 cd "$DOTFILES"
 
-chmod +x brew/install.sh zsh/install.sh link.sh tools/*-install.sh
+chmod +x brew/install.sh zsh/install.sh link.sh
 
 ./brew/install.sh
 ./zsh/install.sh
-# ./tools/nvm-install.sh
-# ./tools/excalidraw-install.sh
-# ./tools/nano-install.sh
 ./link.sh

@@ -80,8 +80,6 @@ alias lt='eza -l --tree -L 2'
 
 alias gpr='git pull --rebase'
 
-alias excalidraw='cd "$DOTFILES/.installs/excalidraw" && yarn && yarn start'
-
 source "$DOTFILES/scripts/k8s/kpf.sh"         # kpf <service> <ports> <context> <namespace>
 source "$DOTFILES/scripts/proto/functions.sh" # protod, textformat2json
 
