@@ -30,56 +30,39 @@ Every script is safe to run again.
 
 ## Moving to a new laptop
 
-Use this instead of a fresh clone when you want to bring your **current** setup along: the dotfiles repo as it is right now (including uncommitted changes and local branches), plus the machine-local files that aren't in git.
+Brings your current setup to a new Mac: the `~/.dotfiles` repo exactly as it is (including uncommitted changes), plus the local files that aren't in git.
 
-### What's in the archive
+**What's included:** `~/.dotfiles`, `~/.zshrc.local`, `~/.gitconfig.local` and `~/.ssh` (keys, `known_hosts`, `config.local`). To include more, add paths to the `FILES` list at the top of `migrate/export.sh`.
 
-| Included | Not included |
-|---|---|
-| `~/.dotfiles`, with `.git` | Homebrew packages (`install.sh` reinstalls them from the Brewfile) |
-| `~/.zshrc.local` | Passphrases stored in the macOS Keychain |
-| `~/.gitconfig.local`, plus any file it includes (e.g. `includeIf` → `~/.gitconfig.work`) | GPG keys, `~/.kube`, `~/.dscore`, `~/.config/gcloud` and other tool state |
-| `~/.ssh`: private and public keys, `known_hosts`, `config.local` | `~/.ssh/config` (it's a link into the repo; `link.sh` recreates it) |
-| | Application data and settings outside this repo |
+**Not included:** Homebrew packages (`install.sh` reinstalls them), Keychain passphrases, and other tool state such as `~/.kube` or `~/.config/gcloud`.
 
-> ⚠️ **The archive is not encrypted and contains your SSH private keys.** Store it only in 1Password, and delete every other copy (the original on the old laptop and the download on the new one) once you're done.
+> ⚠️ **The archive is not encrypted and contains your SSH private keys.** Keep it only in 1Password and delete every other copy when you're done.
 
-### On the old laptop
+### 1. Old laptop: create the archive
 
 ```bash
-~/.dotfiles/migrate/export.sh            # writes ~/Desktop/dotfiles-migrate-<date>.tar.gz
+~/.dotfiles/migrate/export.sh
 ```
 
-To write somewhere else, pass a folder: `~/.dotfiles/migrate/export.sh ~/Downloads`. The script lists everything it included, and the archive has a `MANIFEST.txt` with the same list.
+This creates `~/Desktop/dotfiles-migrate-<date>.tar.gz`. Attach it to a new **Document** item in 1Password, then delete it from the Desktop.
 
-1. In 1Password, create a **Document** item and attach the `.tar.gz`.
-2. Delete the file from the old laptop: `rm ~/Desktop/dotfiles-migrate-*.tar.gz`
+### 2. New laptop: unpack it into your home folder
 
-### On the new laptop
+Download the archive from 1Password, then:
 
-1. Download the archive from 1Password, for example into `~/Downloads`.
-2. Extract it and run the restore script:
+```bash
+tar -xzkf ~/Downloads/dotfiles-migrate-<date>.tar.gz -C ~
+```
 
-   ```bash
-   cd ~/Downloads
-   tar -xzf dotfiles-migrate-<date>.tar.gz
-   ./dotfiles-migrate-<date>/restore.sh
-   ```
+This puts every file back where it was (`~/.dotfiles`, `~/.ssh`, ...), with the same permissions. `-k` keeps any file that already exists instead of overwriting it.
 
-   `restore.sh` puts the repo at `~/.dotfiles` and copies the home files into place. Any file that already exists is moved to `<file>.backup.<timestamp>` first; nothing is overwritten. It also sets SSH permissions: folders 700, private keys 600, public keys 644.
+### 3. New laptop: install
 
-3. Run the normal install:
-
-   ```bash
-   ~/.dotfiles/install.sh
-   ```
-
-4. Load your SSH keys into the Keychain once: `ssh-add --apple-use-keychain ~/.ssh/<key>`
-5. Delete the download and the extracted folder (the copy in 1Password stays):
-
-   ```bash
-   rm -rf ~/Downloads/dotfiles-migrate-*
-   ```
+```bash
+~/.dotfiles/install.sh
+ssh-add --apple-use-keychain ~/.ssh/<key>     # once per key
+rm ~/Downloads/dotfiles-migrate-*.tar.gz      # the copy in 1Password stays
+```
 
 ## What gets linked
 
