@@ -7,3 +7,5 @@
 .installs/**
 !.installs/bin/.gitkeep
 .download/
+
+brew/Brewfile.lock.json
