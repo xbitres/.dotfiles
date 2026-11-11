@@ -85,10 +85,6 @@ viewSwagger() {
 
 alias excalidraw='cd ~/.dotfiles/excalidraw && yarn && yarn start'
 
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
-[[ -f /Users/guilherme.lousada.ramos/.dart-cli-completion/zsh-config.zsh ]] && . /Users/guilherme.lousada.ramos/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # NVM
@@ -96,18 +92,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-# >>> dscore-cli section >>>
-# Here we include the environment changes made by the dscore-cli tool.
-#
-# To disable (almost) all changes made by dscore-cli tool, comment out or
-# remove the line below.
-#
-# Note: The changes made using package managers that existed in the system
-#       before `dscore init` was run cannot be disabled.
-
-source "/Users/guilherme.lousada.ramos/.dscore/.profile"
-
-# <<< End of dscore-cli section >>>
 export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(ssh-agent -s)"
@@ -118,3 +102,7 @@ GCLOUD_SDK="${HOMEBREW_PREFIX:-/opt/homebrew}/share/google-cloud-sdk"
 [ -f "$GCLOUD_SDK/path.zsh.inc" ] && . "$GCLOUD_SDK/path.zsh.inc"
 [ -f "$GCLOUD_SDK/completion.zsh.inc" ] && . "$GCLOUD_SDK/completion.zsh.inc"
 unset GCLOUD_SDK
+
+# Machine-local config, not tracked in git. Loaded last so it can override
+# anything above. Template: $DOTFILES/config/.zshrc.local.example
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
