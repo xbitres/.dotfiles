@@ -16,8 +16,8 @@
     cmd = meld "$LOCAL" "$REMOTE"
 [credential]
 	helper = cache
-[user]
-	email = guilherme.lousadaramos@dentsplysirona.com
-	name = Guilherme Lousada Ramos
-[credential "https://bitbucket.dentsplysirona.com"]
-	username = guilherme.lousadaramos@dentsplysirona.com
+
+# Identity and machine-specific settings, not tracked in git. Included last,
+# so it overrides anything above. Template: config/.gitconfig.local.example
+[include]
+	path = ~/.gitconfig.local

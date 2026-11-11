@@ -1,0 +1,15 @@
+# ~/.gitconfig.local: git identity and machine-specific settings.
+# Not tracked in git. Included at the end of ~/.gitconfig, so it overrides
+# anything set there. link.sh copies this template only if the file is missing.
+
+[user]
+#	name = Your Name
+#	email = you@example.com
+
+# Username for HTTPS credentials on a specific host
+#[credential "https://git.example.com"]
+#	username = you@example.com
+
+# Different identity for repositories under a folder
+#[includeIf "gitdir:~/Work/"]
+#	path = ~/.gitconfig.work
