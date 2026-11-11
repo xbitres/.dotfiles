@@ -14,3 +14,6 @@
 # changes made by dscore-cli, comment out or remove the line below.
 [ -f "$HOME/.dscore/.profile" ] && source "$HOME/.dscore/.profile"
 # <<< End of dscore-cli section >>>
+
+# Include dir for `protod <message.Type> <base64>` (scripts/proto/functions.sh)
+# export PROTO_INCLUDE="$HOME/path/to/protos"
