@@ -67,24 +67,10 @@ if command -v zoxide >/dev/null; then
 fi
 
 # --- SSH agent --------------------------------------------------------------
-# Use the macOS agent and load every key whose passphrase is in the Keychain
-# (store a key once with: ssh-add --apple-use-keychain ~/.ssh/<key>).
-# If no agent is reachable, start one agent shared by all terminals instead
-# of one per terminal.
-ssh-add -l >/dev/null 2>&1; ssh_agent_status=$?   # 0 keys loaded, 1 empty, 2 no agent
-if [ $ssh_agent_status -eq 2 ]; then
-  export SSH_AUTH_SOCK="${TMPDIR:-/tmp}/ssh-agent-$UID.sock"
-  ssh-add -l >/dev/null 2>&1; ssh_agent_status=$?
-  if [ $ssh_agent_status -eq 2 ]; then
-    rm -f "$SSH_AUTH_SOCK"
-    eval "$(ssh-agent -a "$SSH_AUTH_SOCK" -s 2>/dev/null)" >/dev/null
-    ssh_agent_status=1
-  fi
-fi
-if [ $ssh_agent_status -eq 1 ] && [ -x /usr/bin/ssh-add ]; then
-  /usr/bin/ssh-add --apple-load-keychain -q >/dev/null 2>&1   # Apple's ssh-add has this flag
-fi
-unset ssh_agent_status
+# The macOS agent starts empty after each login. If it has no keys, load every
+# key whose passphrase is in the Keychain (stored once with
+# `ssh-add --apple-use-keychain ~/.ssh/<key>`). Apple's ssh-add has this flag.
+ssh-add -l >/dev/null 2>&1 || /usr/bin/ssh-add --apple-load-keychain -q 2>/dev/null
 
 # --- Kubernetes -------------------------------------------------------------
 # Merge every ~/.kube/config* file into KUBECONFIG.
