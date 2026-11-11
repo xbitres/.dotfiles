@@ -4,6 +4,8 @@ macOS setup: Homebrew packages, zsh, git, SSH, Ghostty and VS Code Insiders conf
 
 ## Fresh machine
 
+Moving from an existing laptop? Follow [Moving to a new laptop](#moving-to-a-new-laptop) instead; it brings your SSH keys and local config along.
+
 ```bash
 git clone https://github.com/xbitres/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
@@ -25,6 +27,42 @@ Then finish by hand:
 - Open a new terminal (`exec zsh`).
 
 Every script is safe to run again.
+
+## Moving to a new laptop
+
+Brings your current setup to a new Mac: the `~/.dotfiles` repo exactly as it is (including uncommitted changes), plus the local files that aren't in git.
+
+**What's included:** `~/.dotfiles`, `~/.zshrc.local`, `~/.gitconfig.local` and `~/.ssh` (keys, `known_hosts`, `config.local`). To include more, add paths to the `FILES` list at the top of `migrate/export.sh`.
+
+**Not included:** Homebrew packages (`install.sh` reinstalls them), Keychain passphrases, and other tool state such as `~/.kube` or `~/.config/gcloud`.
+
+> ⚠️ **The archive is not encrypted and contains your SSH private keys.** Keep it only in 1Password and delete every other copy when you're done.
+
+### 1. Old laptop: create the archive
+
+```bash
+~/.dotfiles/migrate/export.sh
+```
+
+This creates `~/Desktop/dotfiles-migrate-<date>.tar.gz`. Attach it to a new **Document** item in 1Password, then delete it from the Desktop.
+
+### 2. New laptop: unpack it into your home folder
+
+Download the archive from 1Password, then:
+
+```bash
+tar -xzkf ~/Downloads/dotfiles-migrate-<date>.tar.gz -C ~
+```
+
+This puts every file back where it was (`~/.dotfiles`, `~/.ssh`, ...), with the same permissions. `-k` keeps any file that already exists instead of overwriting it.
+
+### 3. New laptop: install
+
+```bash
+~/.dotfiles/install.sh
+ssh-add --apple-use-keychain ~/.ssh/<key>     # once per key
+rm ~/Downloads/dotfiles-migrate-*.tar.gz      # the copy in 1Password stays
+```
 
 ## What gets linked
 
