@@ -21,7 +21,7 @@ Then finish by hand:
 
 - Edit `~/.gitconfig.local` and set your git `user.name` and `user.email`.
 - Add SSH host aliases and keys to `~/.ssh/config.local`, then load a key once with `ssh-add --apple-use-keychain ~/.ssh/<key>`.
-- Optionally review and run `./macos/defaults.sh` (keyboard, Finder, Dock preferences).
+- Optionally run `./macos/defaults.sh` to apply the captured macOS preferences (typing, trackpad, Dock, Finder).
 - Open a new terminal (`exec zsh`).
 
 Every script is safe to run again.
