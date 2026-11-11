@@ -1,5 +1,8 @@
 export DOTFILES=~/.dotfiles
 
+# Keep PATH and FPATH free of duplicates, however often entries are added.
+typeset -U PATH path FPATH fpath
+
 # --- Homebrew ---------------------------------------------------------------
 # Sets HOMEBREW_PREFIX and puts brew on PATH (Apple Silicon, then Intel).
 for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew; do
@@ -27,7 +30,7 @@ export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"     # mysql (keg-only)
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$DOTFILES/scripts/proto"                   # base64urldecode.go, used by protod
 export PATH="$PATH:$GOBIN"
-export PATH="$PATH:$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
+export PATH="$PATH:$HOME/.pub-cache/bin"                     # Dart global tools (dart pub global activate ...)
 
 export FLAGS_GETOPT_CMD="$HOMEBREW_PREFIX/opt/gnu-getopt/bin/getopt"
 
@@ -42,7 +45,6 @@ source $ZSH/oh-my-zsh.sh
 
 # --- Tools and completions --------------------------------------------------
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-# source "$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 command -v kubectl >/dev/null && source <(kubectl completion zsh)
 command -v fzf >/dev/null && source <(fzf --zsh)
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
@@ -63,6 +65,12 @@ if command -v zoxide >/dev/null; then
   eval "$(zoxide init zsh)"
   alias zz='zi'
 fi
+
+# --- SSH agent --------------------------------------------------------------
+# The macOS agent starts empty after each login. If it has no keys, load every
+# key whose passphrase is in the Keychain (stored once with
+# `ssh-add --apple-use-keychain ~/.ssh/<key>`). Apple's ssh-add has this flag.
+ssh-add -l >/dev/null 2>&1 || /usr/bin/ssh-add --apple-load-keychain -q 2>/dev/null
 
 # --- Kubernetes -------------------------------------------------------------
 # Merge every ~/.kube/config* file into KUBECONFIG.
