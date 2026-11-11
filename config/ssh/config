@@ -1,0 +1,10 @@
+# ~/.ssh/config, linked by link.sh. Host aliases and identities live in the
+# untracked ~/.ssh/config.local, included first so its settings win.
+Include ~/.ssh/config.local
+
+Host *
+  # Load keys into the macOS agent on first use and keep passphrases in the
+  # Keychain. IgnoreUnknown keeps this file valid on non-macOS OpenSSH.
+  AddKeysToAgent yes
+  IgnoreUnknown UseKeychain
+  UseKeychain yes

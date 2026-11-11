@@ -1,0 +1,7 @@
+# Ghostty config, linked to ~/.config/ghostty/config by link.sh.
+# Reference: `ghostty +show-config --default --docs`
+
+# Carried over from the previous iTerm setup (Nord colours, Monaco 14).
+theme = Nord
+font-family = Monaco
+font-size = 14

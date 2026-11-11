@@ -1,0 +1,10 @@
+# ~/.ssh/config.local: host aliases and identities. Not tracked in git.
+# Included at the top of ~/.ssh/config. link.sh copies this template only if
+# the file is missing (an existing ~/.ssh/config is moved here instead).
+
+# Example: a second GitHub account, used as git@github-personal:owner/repo.git
+#Host github-personal
+#  HostName github.com
+#  User git
+#  IdentityFile ~/.ssh/id_ed25519_personal
+#  IdentitiesOnly yes
