@@ -8,7 +8,7 @@
 set -euo pipefail
 
 # Paths inside your home folder to include. Add more here if needed.
-FILES=(.dotfiles .zshrc.local .gitconfig.local .ssh)
+FILES=(.dotfiles .zshrc.local .gitconfig.local .ssh Documents/Wallpapers)
 
 out="${1:-$HOME/Desktop}/dotfiles-migrate-$(date +%Y-%m-%d).tar.gz"
 
