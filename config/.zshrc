@@ -1,5 +1,8 @@
 export DOTFILES=~/.dotfiles
 
+# Keep PATH and FPATH free of duplicates, however often entries are added.
+typeset -U PATH path FPATH fpath
+
 # --- Homebrew ---------------------------------------------------------------
 # Sets HOMEBREW_PREFIX and puts brew on PATH (Apple Silicon, then Intel).
 for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew; do
@@ -27,7 +30,7 @@ export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"     # mysql (keg-only)
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$PATH:$DOTFILES/scripts/proto"                   # base64urldecode.go, used by protod
 export PATH="$PATH:$GOBIN"
-export PATH="$PATH:$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
+export PATH="$PATH:$HOME/.pub-cache/bin"                     # Dart global tools (dart pub global activate ...)
 
 export FLAGS_GETOPT_CMD="$HOMEBREW_PREFIX/opt/gnu-getopt/bin/getopt"
 
@@ -42,7 +45,6 @@ source $ZSH/oh-my-zsh.sh
 
 # --- Tools and completions --------------------------------------------------
 source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-# source "$HOMEBREW_PREFIX/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 command -v kubectl >/dev/null && source <(kubectl completion zsh)
 command -v fzf >/dev/null && source <(fzf --zsh)
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
@@ -63,6 +65,26 @@ if command -v zoxide >/dev/null; then
   eval "$(zoxide init zsh)"
   alias zz='zi'
 fi
+
+# --- SSH agent --------------------------------------------------------------
+# Use the macOS agent and load every key whose passphrase is in the Keychain
+# (store a key once with: ssh-add --apple-use-keychain ~/.ssh/<key>).
+# If no agent is reachable, start one agent shared by all terminals instead
+# of one per terminal.
+ssh-add -l >/dev/null 2>&1; ssh_agent_status=$?   # 0 keys loaded, 1 empty, 2 no agent
+if [ $ssh_agent_status -eq 2 ]; then
+  export SSH_AUTH_SOCK="${TMPDIR:-/tmp}/ssh-agent-$UID.sock"
+  ssh-add -l >/dev/null 2>&1; ssh_agent_status=$?
+  if [ $ssh_agent_status -eq 2 ]; then
+    rm -f "$SSH_AUTH_SOCK"
+    eval "$(ssh-agent -a "$SSH_AUTH_SOCK" -s 2>/dev/null)" >/dev/null
+    ssh_agent_status=1
+  fi
+fi
+if [ $ssh_agent_status -eq 1 ] && [ -x /usr/bin/ssh-add ]; then
+  /usr/bin/ssh-add --apple-load-keychain -q >/dev/null 2>&1   # Apple's ssh-add has this flag
+fi
+unset ssh_agent_status
 
 # --- Kubernetes -------------------------------------------------------------
 # Merge every ~/.kube/config* file into KUBECONFIG.

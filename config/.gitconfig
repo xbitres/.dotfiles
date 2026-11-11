@@ -15,7 +15,8 @@
 [difftool "meld"]
     cmd = meld "$LOCAL" "$REMOTE"
 [credential]
-	helper = cache
+	# Store HTTPS credentials in the macOS Keychain
+	helper = osxkeychain
 
 # Identity and machine-specific settings, not tracked in git. Included last,
 # so it overrides anything above. Template: config/.gitconfig.local.example
