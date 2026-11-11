@@ -2,7 +2,6 @@
 	editor = nano
 	fileMode = false
 [alias]
-  next = "!f() { $DOTFILES/scripts/git/gitnext.sh \"${@}\";}; f"
   bclean = "!f() { $DOTFILES/scripts/git/bclean.sh \"${@}\";}; f"
 [pull]
 	rebase = false

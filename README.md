@@ -4,12 +4,8 @@
 
 ## Manual config
 
-### iTerm
+### Terminal: Ghostty
 
-* iterm2 > Preferences > Preference
+Ghostty is installed by the Brewfile, and its config (`config/ghostty/config`) is linked to `~/.config/ghostty/config` by `link.sh`.
 
-* Load preferences from a custom folder. Insert the following path: `~/.dotfiles/iterm`
-
-### Warp
-
-Since 2023 I am using Warp as my official terminal interface. This meant removing many oh-my-zsh plugins.
+`macos/default-apps.sh` (run by `install.sh`) makes Ghostty the app that opens Unix executables from Finder. macOS has no single "default terminal" setting: `.command` files and some apps' "Open in Terminal" actions still use Terminal.app.

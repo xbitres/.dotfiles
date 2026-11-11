@@ -3,11 +3,12 @@ set -e
 
 export DOTFILES="${DOTFILES:-$(cd "$(dirname "$0")" && pwd)}"
 
-# Symlink $DOTFILES/config/<file> to ~/<file>. Safe to re-run: existing
-# correct links are left alone, other existing files are backed up.
+# Symlink $DOTFILES/config/<file> to ~/<target> (default: ~/<file>). Safe to
+# re-run: existing correct links are left alone, other files are backed up.
 link() {
     local src="$DOTFILES/config/$1"
-    local dst="$HOME/$1"
+    local dst="$HOME/${2:-$1}"
+    mkdir -p "$(dirname "$dst")"
 
     if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
         echo "ok      $dst"
@@ -25,6 +26,7 @@ link() {
 link .gitconfig
 link .nanorc
 link .zshrc
+link ghostty/config .config/ghostty/config
 
 # ~/.zshrc.local is machine-specific: copy the template once, never overwrite.
 if [ ! -e "$HOME/.zshrc.local" ]; then

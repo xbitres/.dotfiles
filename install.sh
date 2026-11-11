@@ -5,8 +5,9 @@ set -e
 export DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 cd "$DOTFILES"
 
-chmod +x brew/install.sh zsh/install.sh link.sh
+chmod +x brew/install.sh zsh/install.sh link.sh macos/*.sh
 
 ./brew/install.sh
 ./zsh/install.sh
 ./link.sh
+./macos/default-apps.sh
