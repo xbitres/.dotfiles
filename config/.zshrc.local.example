@@ -1,0 +1,16 @@
+# ~/.zshrc.local: machine- and project-specific zsh config.
+# Not tracked in git. Sourced at the end of ~/.zshrc, so it can override
+# anything set there. link.sh copies this template to ~/.zshrc.local only
+# if that file does not exist yet.
+#
+# When a tool's installer appends to ~/.zshrc (which is a symlink into the
+# dotfiles repo), move what it added into this file.
+
+# Dart CLI completion
+[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh"
+
+# >>> dscore-cli section >>>
+# Environment changes made by the dscore-cli tool. To disable (almost) all
+# changes made by dscore-cli, comment out or remove the line below.
+[ -f "$HOME/.dscore/.profile" ] && source "$HOME/.dscore/.profile"
+# <<< End of dscore-cli section >>>

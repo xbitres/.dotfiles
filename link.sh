@@ -25,3 +25,11 @@ link() {
 link .gitconfig
 link .nanorc
 link .zshrc
+
+# ~/.zshrc.local is machine-specific: copy the template once, never overwrite.
+if [ ! -e "$HOME/.zshrc.local" ]; then
+    cp "$DOTFILES/config/.zshrc.local.example" "$HOME/.zshrc.local"
+    echo "created $HOME/.zshrc.local (from template)"
+else
+    echo "ok      $HOME/.zshrc.local (kept, machine-local)"
+fi
