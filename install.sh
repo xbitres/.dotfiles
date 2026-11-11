@@ -11,6 +11,5 @@ chmod +x brew/install.sh zsh/install.sh link.sh tools/*-install.sh
 ./zsh/install.sh
 # ./tools/nvm-install.sh
 # ./tools/excalidraw-install.sh
-./tools/fasd-install.sh
 # ./tools/nano-install.sh
 ./link.sh

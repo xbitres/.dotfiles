@@ -25,7 +25,6 @@ export PATH="$HOMEBREW_PREFIX/opt/make/libexec/gnubin:$PATH"  # GNU make as `mak
 export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"            # psql (keg-only)
 export PATH="$HOMEBREW_PREFIX/opt/mysql-client/bin:$PATH"     # mysql (keg-only)
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$PATH:$DOTFILES/.installs/bin"
 export PATH="$PATH:$DOTFILES/scripts/proto"                   # base64urldecode.go, used by protod
 export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$HOME/.pub-cache/bin" # FIXME(GR): Automate install of grpc for dart https://grpc.io/docs/quickstart/dart/
@@ -59,16 +58,10 @@ GCLOUD_SDK="$HOMEBREW_PREFIX/share/google-cloud-sdk"
 [ -f "$GCLOUD_SDK/completion.zsh.inc" ] && . "$GCLOUD_SDK/completion.zsh.inc"
 unset GCLOUD_SDK
 
-# FASD (z-like directory jumping)
-if command -v fasd >/dev/null; then
-  fasd_cache="$HOME/.fasd-init-bash"
-  if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-    fasd --init posix-alias zsh-hook >|"$fasd_cache"
-  fi
-  source "$fasd_cache"
-  unset fasd_cache
-  alias z='fasd_cd -d'
-  alias zz='fasd_cd -d -i'
+# zoxide (z-like directory jumping): `z foo` jumps, `zi foo` picks interactively with fzf
+if command -v zoxide >/dev/null; then
+  eval "$(zoxide init zsh)"
+  alias zz='zi'
 fi
 
 # --- Kubernetes -------------------------------------------------------------
@@ -107,4 +100,4 @@ source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 
 # Machine-local config, not tracked in git. Loaded last so it can override
 # anything above. Template: $DOTFILES/config/.zshrc.local.example
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+if [ -f "$HOME/.zshrc.local" ]; then source "$HOME/.zshrc.local"; fi

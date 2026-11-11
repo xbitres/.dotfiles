@@ -63,6 +63,7 @@ brew "protoc-gen-go"                                                    # Go sup
 brew "protoc-gen-go-grpc"                                               # Protoc plugin that generates code for gRPC-Go clients
 brew "uv"                                                               # Extremely fast Python package installer and resolver, written in Rust
 brew "yt-dlp"                                                           # Feature-rich command-line audio/video downloader
+brew "zoxide"                                                           # Shell extension to navigate your filesystem faster
 brew "zsh-autocomplete"                                                 # Real-time type-ahead completion for Zsh
 
 cask "1password"                                                        # Password manager that keeps all passwords secure behind one password
