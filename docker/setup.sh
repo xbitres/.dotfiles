@@ -78,6 +78,10 @@ else
         echo -n "."; sleep 2
     done
     echo
+    if ! docker --context colima info >/dev/null 2>&1; then
+        echo "colima did not start; check: colima status, ~/.colima/default/daemon/daemon.log" >&2
+        exit 1
+    fi
 fi
 
 if ! brew services list | grep -q '^colima .*started'; then

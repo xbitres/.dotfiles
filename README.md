@@ -17,8 +17,8 @@ cd ~/.dotfiles
 1. `brew/install.sh`: installs Homebrew if needed, then everything in `brew/Brewfile` (formulae, casks, VS Code extensions, Go tools).
 2. `zsh/install.sh`: installs Oh My Zsh (unattended, keeps `~/.zshrc`).
 3. `link.sh`: links the tracked config into `$HOME` and creates the machine-local files (see below).
-4. `docker/setup.sh`: sets up Colima as the Docker engine with buildx and compose (see [Docker](#docker)).
-5. `macos/default-apps.sh`: makes Ghostty the app that opens Unix executables.
+4. `macos/default-apps.sh`: makes Ghostty the app that opens Unix executables.
+5. `docker/setup.sh`: sets up Colima as the Docker engine with buildx and compose (see [Docker](#docker)). The first run downloads the Colima VM, so it takes a few minutes.
 
 Then finish by hand:
 

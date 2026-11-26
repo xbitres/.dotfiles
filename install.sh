@@ -11,5 +11,5 @@ chmod +x brew/install.sh zsh/install.sh link.sh docker/setup.sh macos/*.sh
 ./brew/install.sh
 ./zsh/install.sh
 ./link.sh
-./docker/setup.sh
 ./macos/default-apps.sh
+./docker/setup.sh   # last: slowest step (downloads the Colima VM on first run)
