@@ -18,6 +18,7 @@ cd ~/.dotfiles
 2. `zsh/install.sh`: installs Oh My Zsh (unattended, keeps `~/.zshrc`).
 3. `link.sh`: links the tracked config into `$HOME` and creates the machine-local files (see below).
 4. `macos/default-apps.sh`: makes Ghostty the app that opens Unix executables.
+5. `docker/setup.sh`: sets up Colima as the Docker engine with buildx and compose (see [Docker](#docker)). The first run downloads the Colima VM, so it takes a few minutes.
 
 Then finish by hand:
 
@@ -105,6 +106,16 @@ If a tool's installer appends to `~/.zshrc` (a symlink into this repo), move wha
 - `brew bundle install --file=brew/Brewfile` installs what's missing.
 - `./brew/check.sh` shows what's missing from or extra to the Brewfile. It doesn't change anything.
 - `brew bundle cleanup --file=brew/Brewfile --force` uninstalls everything not in the Brewfile.
+
+## Docker
+
+Docker runs in [Colima](https://github.com/abiosoft/colima), not Docker Desktop. `docker/setup.sh` (run by `install.sh`, safe to re-run):
+
+- Adds Homebrew's plugin folder to `cliPluginsExtraDirs` in `~/.docker/config.json`, so `docker buildx` and `docker compose` work, and stores registry logins in the macOS Keychain. Other settings in the file are kept.
+- Removes broken Docker Desktop plugin links from `~/.docker/cli-plugins`.
+- Creates the Colima VM on first run (4 CPUs, 8 GiB memory, 100 GiB disk, `vz` with Rosetta on Apple Silicon), then starts it as a Homebrew service so it comes back at every login. Colima switches the docker context to `colima` when it starts.
+
+If Docker Desktop is still installed, uninstall it. Useful commands: `colima status`, `brew services restart colima`. To resize the VM: `colima stop && colima start --cpu 8 --memory 16`.
 
 ## Shell helpers
 
