@@ -6,9 +6,10 @@ DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 export DOTFILES
 cd "$DOTFILES"
 
-chmod +x brew/install.sh zsh/install.sh link.sh macos/*.sh
+chmod +x brew/install.sh zsh/install.sh link.sh docker/setup.sh macos/*.sh
 
 ./brew/install.sh
 ./zsh/install.sh
 ./link.sh
+./docker/setup.sh
 ./macos/default-apps.sh
