@@ -114,7 +114,7 @@ Docker runs in [Colima](https://github.com/abiosoft/colima), not Docker Desktop.
 - Installs `colima`, `docker`, buildx, compose and the Keychain credential helper if they're missing (they're in the Brewfile too), and stops if the `docker` command still isn't found.
 - Adds Homebrew's plugin folder to `cliPluginsExtraDirs` in `~/.docker/config.json`, so `docker buildx` and `docker compose` work, and stores registry logins in the macOS Keychain. Other settings in the file are kept.
 - Removes broken Docker Desktop plugin links from `~/.docker/cli-plugins`.
-- Creates the Colima VM on first run (4 CPUs, 8 GiB memory, 100 GiB disk, `vz` with Rosetta on Apple Silicon), then starts it as a Homebrew service so it comes back at every login. Colima switches the docker context to `colima` when it starts.
+- Creates the Colima VM on first run (4 CPUs, 8 GiB memory, 100 GiB disk, `vz` with Rosetta on Apple Silicon), then starts it as a Homebrew service so it comes back at every login, and switches the docker context to `colima` (away from Docker Desktop's `desktop-linux`).
 
 If Docker Desktop is still installed, uninstall it. Useful commands: `colima status`, `brew services restart colima`. To resize the VM: `colima stop && colima start --cpu 8 --memory 16`.
 

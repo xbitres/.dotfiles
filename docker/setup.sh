@@ -26,5 +26,6 @@ if ! colima list 2>/dev/null | grep -q '^default '; then
     colima stop
 fi
 
-# Run Colima now and at every login; it switches docker to the colima context.
+# Run Colima now and at every login, and point docker at it (away from Docker Desktop's context).
 brew services start colima
+docker context use colima
