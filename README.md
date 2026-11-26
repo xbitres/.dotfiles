@@ -111,12 +111,11 @@ If a tool's installer appends to `~/.zshrc` (a symlink into this repo), move wha
 
 Docker runs in [Colima](https://github.com/abiosoft/colima), not Docker Desktop. `docker/setup.sh` (run by `install.sh`, safe to re-run):
 
-- Adds Homebrew's plugin folder to `cliPluginsExtraDirs` in `~/.docker/config.json`, so `docker buildx` and `docker compose` work, and stores registry logins in the macOS Keychain. Other settings in the file are kept; the old file is backed up when it changes.
+- Adds Homebrew's plugin folder to `cliPluginsExtraDirs` in `~/.docker/config.json`, so `docker buildx` and `docker compose` work, and stores registry logins in the macOS Keychain. Other settings in the file are kept.
 - Removes broken Docker Desktop plugin links from `~/.docker/cli-plugins`.
-- Creates the Colima VM on first run (4 CPUs, 8 GiB memory, 100 GiB disk, `vz` with Rosetta on Apple Silicon; override with `COLIMA_CPUS`, `COLIMA_MEMORY`, `COLIMA_DISK`), starts it as a Homebrew service so it comes back at every login, and switches the docker context to `colima`.
-- Checks that the engine, buildx and compose respond.
+- Creates the Colima VM on first run (4 CPUs, 8 GiB memory, 100 GiB disk, `vz` with Rosetta on Apple Silicon), then starts it as a Homebrew service so it comes back at every login. Colima switches the docker context to `colima` when it starts.
 
-If Docker Desktop is still installed, quit or uninstall it. Useful commands: `colima status`, `colima stop`, `brew services restart colima`.
+If Docker Desktop is still installed, uninstall it. Useful commands: `colima status`, `brew services restart colima`. To resize the VM: `colima stop && colima start --cpu 8 --memory 16`.
 
 ## Shell helpers
 
