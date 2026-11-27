@@ -27,5 +27,6 @@ if ! colima list 2>/dev/null | grep -q '^default '; then
 fi
 
 # Run Colima now and at every login, and point docker at it (away from Docker Desktop's context).
-brew services start colima
+# restart, not start: start fails (launchctl error 5) if the service is registered but not running.
+colima status >/dev/null 2>&1 || brew services restart colima
 docker context use colima
