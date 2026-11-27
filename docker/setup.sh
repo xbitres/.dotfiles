@@ -5,6 +5,10 @@ eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shell
 
 [ -d /Applications/Docker.app ] && echo "Docker Desktop is still installed: uninstall it to avoid conflicts"
 
+# Also in the Brewfile; installed here too so this script works on its own. Quick if present.
+brew install --quiet colima docker docker-buildx docker-compose docker-credential-helper jq
+command -v docker >/dev/null || { echo "docker is installed but not linked: run brew link --overwrite docker" >&2; exit 1; }
+
 # Let docker find Homebrew's plugins and keep logins in the Keychain (replacing
 # Docker Desktop's helper). Drop plugin links left pointing into Docker.app.
 config="$HOME/.docker/config.json"
@@ -22,5 +26,7 @@ if ! colima list 2>/dev/null | grep -q '^default '; then
     colima stop
 fi
 
-# Run Colima now and at every login; it switches docker to the colima context.
-brew services start colima
+# Run Colima now and at every login, and point docker at it (away from Docker Desktop's context).
+# restart, not start: start fails (launchctl error 5) if the service is registered but not running.
+colima status >/dev/null 2>&1 || brew services restart colima
+docker context use colima
