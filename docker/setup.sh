@@ -28,5 +28,8 @@ fi
 
 # Run Colima now and at every login, and point docker at it (away from Docker Desktop's context).
 # restart, not start: start fails (launchctl error 5) if the service is registered but not running.
+# The service starts Colima in the background: wait for it (up to 2 minutes).
 colima status >/dev/null 2>&1 || brew services restart colima
+for _ in $(seq 60); do colima status >/dev/null 2>&1 && break; sleep 2; done
+colima status >/dev/null 2>&1 || { echo "colima didn't start, see $HOMEBREW_PREFIX/var/log/colima.log" >&2; exit 1; }
 docker context use colima
